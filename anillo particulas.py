@@ -1,16 +1,40 @@
 from vpython import *
 from math import *
 
-# Datos
-m1 = 6.0 # masa particula 1
-m2 = 6.0 # masa particula 2
-R = 10.0 # radio de anillo
-d = 100 # densidad
-r1 = ((3.0*m1)/(4*pi*d))**(1.0/3) # radio de particula 1
-r2 = ((3.0*m2)/(4*pi*d))**(1.0/3) # radio de particula 2
-g = 10.0 # fuerza de gravedad
-dt = 1.0/60 # intervalos de tiempo
-nu = 0.0 # coeficiente de roce cinetico (superficie)
+'''Datos del problema
+****** ESCRIBIR DESCRIPCION *******
+
+masa particula 1            : m1
+radio planeta (Masa mayor)  : m2
+Radio anillo                : R
+densidad                    : d
+radio particula 1           : r1
+radio particula 2           : r2
+gravedad                    : g
+coeficiente de roce cinetico: nu
+tiempo                      : dt
+angulo Particula 1          : theta 1
+angulo Particula 2          : theta 2
+velocidad angular P1        : omega 1
+velocidad angular P2        : omega 2
+
+'''
+
+m1 = 6.0 
+m2 = 6.0 
+R = 10.0  
+d = 100 
+r1 = ((3.0*m1)/(4*pi*d))**(1.0/3) 
+r2 = ((3.0*m2)/(4*pi*d))**(1.0/3) 
+g = 10.0 
+dt = 1.0/60 
+nu = 0.0 
+theta1 = asin(1.0*P1.pos.z/P1.pos.z) 
+theta2 = -theta1 
+omega1 = 0.1 
+omega2 = 0.0
+
+
 
 # Pelotas
 P1 = sphere(pos = vector(0,0,R), radius = r1, color = color.red, make_trail=True, interval = 0.1) # pelota que se encuentra arriba
@@ -25,19 +49,11 @@ z_k = arrow(pos=vector(0,0,0), axis=vector(0,0,1), color=color.green, shaftwidth
 ro_e = arrow(pos = P1.pos, axis=vector(1,0,0), color = color.white, shaftwidth=0.05)
 th_e = arrow(pos = P1.pos, axis=vector(0,0,1), color = color.white, shaftwidth=0.05)
 
-theta1 = asin(1.0*P1.pos.z/P1.pos.z) # angulo P1
-theta2 = -theta1 # angulo P2
-omega1 = 0.1 # vel. angular P1
-omega2 = 0.0 # vel. angular P2
-
 def signo(a):
     if a==0:
         return 0
     else:
         return (abs(a)/a)
-
-
-
 
 while True:
 
